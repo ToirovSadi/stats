@@ -6,14 +6,15 @@ import (
 
 func Avg(payment []types.Payment) types.Money {
 	var sum types.Money = 0
-	var n int = len(payment)
+	var cnt int = 0
 	for _, payment := range payment {
 		if payment.Status == types.StatusFail {
 			continue
 		}
+		cnt++
 		sum += payment.Amount
 	}
-	return sum / types.Money(n)
+	return sum / types.Money(cnt)
 }
 
 func TotalInCategory(payments []types.Payment, category types.Category) types.Money {
